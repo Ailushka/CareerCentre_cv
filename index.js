@@ -42,40 +42,6 @@ menuLinks.forEach(menuLink => {
 });
 
 /* -------------------- */
-/*   Heading-subtitle   */
-/* -------------------- */
-
-const siteSubtitleElement = document.querySelector('.site-subtitle');
-
-const siteSubtitles = [
-  '&rarr; программирование',
-  '&rarr; аналитика и Data Science',
-  '&rarr; менеджмент',
-  '&rarr; маркетинг',
-  '&rarr; дизайн',
-  '&rarr; HR и рекрутмент'
-];
-
-let currentSubtitleIndex = 0;
-
-function renderCurrentSubtitle() {
-  siteSubtitleElement.innerHTML = siteSubtitles[currentSubtitleIndex];
-  siteSubtitleElement.classList.add('offer__site-subtitle_active');
-
-  setTimeout(() => {
-    siteSubtitleElement.classList.remove('offer__site-subtitle_active');
-  }, 1400);
-  currentSubtitleIndex = (currentSubtitleIndex + 1) % siteSubtitles.length;
-}
-
-renderCurrentSubtitle(); // Показываем первый элемент сразу
-
-setInterval(() => {
-  renderCurrentSubtitle();
-}, 2000);
-
-
-/* -------------------- */
 /*         Popup        */
 /* -------------------- */
 
