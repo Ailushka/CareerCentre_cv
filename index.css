@@ -925,33 +925,43 @@ html:has(.nav_opened) {
 /* Requests */
 
 .requests__content {
-  display: flex;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: minmax(min-content, calc(308/1160 *100%)) 1fr;
+  grid-template-areas: "title list"
+                       "button list";
+  column-gap: 6px;
   margin-bottom: 8px;
-  position: relative;
 }
 
 .requests__title {
-  flex: 1 0 calc(308/1160 *100%);
-  padding: 40px 24px;
+  max-width: 100%;
+  padding: 40px 24px 0;
   box-sizing: border-box;
+  border-radius: 12px 12px 0 0;
   text-align: left;
+  grid-area: title;
 }
 
-.requests__control-buttons {
-  position: absolute;
-  bottom: 40px;
-  left: 32px;
+.requests__button-wrapper {
+  border-radius: 0 0 12px 12px;
+  margin-bottom: 0;
+  padding: 0 24px 40px;
+  grid-area: button;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: end;
 }
 
 .requests__list {
   padding: 40px;
   box-sizing: border-box;
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 6px;
   counter-reset: requests-counter 0;
+  grid-area: list;
 }
 
 .request {
@@ -960,10 +970,6 @@ html:has(.nav_opened) {
   border-radius: 12px;
   background: #F8F8F8;
   counter-increment: requests-counter 1;
-  width: calc((100% - 12px) / 3);
-  background-repeat: no-repeat;
-  background-size: auto;
-  background-position: top left;
 }
 
 .request__text {
@@ -986,23 +992,27 @@ html:has(.nav_opened) {
 
 @media (max-width: 992px) {
   .requests__content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    grid-template-areas: "title"
+                         "list"
+                         "button";
     gap: 0;
   }
   .requests__title {
-    max-width: 100%;
     width: 100%;
     border-radius: 12px 12px 0 0;
     text-align: center;
     padding-bottom: 16px;
   }
-  .requests__slider {
-    border-radius: 0 0 12px 12px;
-    padding-right: 0;
+  .requests__button-wrapper {
+    align-items: center;
+  }
+  .requests__list {
+    padding-top: 16px;
+    border-radius: 0;
   }
   .request {
-    padding: 200px 12px 20px;
-    background-size: contain;
+    padding: 52px 20px 12px;
   }
 }
 
@@ -1012,8 +1022,12 @@ html:has(.nav_opened) {
     font-size: 26px;
     line-height: calc(29 / 26);
   }
-  .requests__slider {
-    padding: 0 0 20px 12px;
+  .requests__button-wrapper {
+    padding: 0 12px 20px;
+  }
+  .requests__list {
+    padding: 0 12px 20px;
+    margin-bottom: 0;
   }
 }
 
