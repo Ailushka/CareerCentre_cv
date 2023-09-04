@@ -258,88 +258,103 @@ const sliders = document.querySelectorAll('.slider');
 
 sliders.forEach(slider => initSlider(slider));
 
-/* -------------------- */
-/*         Tabs         */
-/* -------------------- */
+// /* -------------------- */
+// /*         Tabs         */
+// /* -------------------- */
+//
+// const tabList = document.querySelector('[role="tablist"]');
+// const tabs = document.querySelectorAll('[role="tab"]');
+//
+// tabList.addEventListener('keydown', changeTabFocus);
+//
+// tabs.forEach((tab) => {
+//   tab.addEventListener('click', changeTabPanel);
+// });
+//
+// let tabFocus = 0;
+//
+// function changeTabFocus(evt) {
+//   const keydownLeft = 37;
+//   const keydownRight = 39;
+//
+//   if (evt.keyCode === keydownLeft || evt.keyCode === keydownRight) {
+//     tabs[tabFocus].setAttribute("tabindex", -1);
+//   }
+//
+//   if (evt.keyCode === keydownRight) {
+//     tabFocus++;
+//     if (tabFocus >= tabs.length) {
+//       tabFocus = 0;
+//     }
+//   }
+//
+//   if (evt.keyCode === keydownLeft) {
+//     tabFocus--;
+//     if (tabFocus < 0) {
+//       tabFocus = tabs.length - 1;
+//     }
+//   }
+//
+//   tabs[tabFocus].setAttribute("tabindex", 0);
+//   tabs[tabFocus].focus();
+// }
+//
+// function changeTabPanel(evt) {
+//   const targetTab = evt.target;
+//   const targetPanel = targetTab.getAttribute("aria-controls");
+//
+//   const tabContainer = targetTab.parentNode.parentNode;
+//   const mainContainer = tabContainer.parentNode;
+//
+//   tabContainer
+//     .querySelector('[aria-selected="true"]')
+//     .setAttribute("aria-selected", false);
+//
+//   targetTab.setAttribute("aria-selected", true);
+//
+//   hideContent(mainContainer, '[role="tabpanel"]');
+//   showContent(mainContainer, [`#${targetPanel}`]);
+// }
+//
+// function hideContent(parent, content) {
+//   parent
+//     .querySelectorAll(content)
+//     .forEach((item) => {
+//       item.setAttribute("hidden", true);
+//       item.classList.remove('tabpanel_active');
+//       const panelId = item.getAttribute("id");
+//       const sliderInstance = sliderInstances[panelId];
+//       if (sliderInstance) {
+//         sliderInstance.removeClickHandlers();
+//         sliderInstance.sliderContainer.classList.remove('slider');
+//       }
+//     });
+// }
+//
+// function showContent(parent, content) {
+//   parent.querySelector(content).removeAttribute('hidden');
+//   parent.querySelector(content).classList.add('tabpanel_active');
+//
+//   const panelId = parent.querySelector(content).getAttribute("id");
+//   const sliderInstance = sliderInstances[panelId];
+//   if (sliderInstance && parent.classList.contains('process__content')) {
+//     parent.querySelector(content).classList.add('slider');
+//     sliderInstance.removeClickHandlers();
+//     initSlider(parent.querySelector(content));
+//   }
+// }
 
-const tabList = document.querySelector('[role="tablist"]');
-const tabs = document.querySelectorAll('[role="tab"]');
+window.addEventListener('load', function() {
+  const firstSteps = document.querySelectorAll(".rate:first-child .step");
+  const secondSteps = document.querySelectorAll(".rate:nth-child(2) .step");
 
-tabList.addEventListener('keydown', changeTabFocus);
+  for (let i = 0; i < firstSteps.length; i++) {
+    const firstStepHeight = firstSteps[i].offsetHeight;
+    const secondStepHeight = secondSteps[i].offsetHeight;
 
-tabs.forEach((tab) => {
-  tab.addEventListener('click', changeTabPanel);
+    const maxHeight = Math.max(firstStepHeight, secondStepHeight);
+
+    firstSteps[i].style.height = maxHeight + 'px';
+    secondSteps[i].style.height = maxHeight + 'px';
+  }
 });
-
-let tabFocus = 0;
-
-function changeTabFocus(evt) {
-  const keydownLeft = 37;
-  const keydownRight = 39;
-
-  if (evt.keyCode === keydownLeft || evt.keyCode === keydownRight) {
-    tabs[tabFocus].setAttribute("tabindex", -1);
-  }
-
-  if (evt.keyCode === keydownRight) {
-    tabFocus++;
-    if (tabFocus >= tabs.length) {
-      tabFocus = 0;
-    }
-  }
-
-  if (evt.keyCode === keydownLeft) {
-    tabFocus--;
-    if (tabFocus < 0) {
-      tabFocus = tabs.length - 1;
-    }
-  }
-
-  tabs[tabFocus].setAttribute("tabindex", 0);
-  tabs[tabFocus].focus();
-}
-
-function changeTabPanel(evt) {
-  const targetTab = evt.target;
-  const targetPanel = targetTab.getAttribute("aria-controls");
-
-  const tabContainer = targetTab.parentNode.parentNode;
-  const mainContainer = tabContainer.parentNode;
-
-  tabContainer
-    .querySelector('[aria-selected="true"]')
-    .setAttribute("aria-selected", false);
-
-  targetTab.setAttribute("aria-selected", true);
-
-  hideContent(mainContainer, '[role="tabpanel"]');
-  showContent(mainContainer, [`#${targetPanel}`]);
-}
-
-function hideContent(parent, content) {
-  parent
-    .querySelectorAll(content)
-    .forEach((item) => {
-      item.setAttribute("hidden", true);
-      item.classList.remove('tabpanel_active');
-      const panelId = item.getAttribute("id");
-      const sliderInstance = sliderInstances[panelId];
-      if (sliderInstance) {
-        sliderInstance.removeClickHandlers();
-        sliderInstance.sliderContainer.classList.remove('slider');
-      }
-    });
-}
-
-function showContent(parent, content) {
-  parent.querySelector(content).removeAttribute('hidden');
-  parent.querySelector(content).classList.add('tabpanel_active');
-
-  const panelId = parent.querySelector(content).getAttribute("id");
-  const sliderInstance = sliderInstances[panelId];
-  if (sliderInstance && parent.classList.contains('process__content')) {
-    parent.querySelector(content).classList.add('slider');
-    sliderInstance.removeClickHandlers();
-    initSlider(parent.querySelector(content));
-  }
-}
