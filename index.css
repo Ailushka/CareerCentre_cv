@@ -163,7 +163,7 @@ html:has(.nav_opened) {
   margin: 0;
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 1276px) {
   .site-title {
     font-size: 40px;
   }
@@ -213,6 +213,7 @@ html:has(.nav_opened) {
 @media (max-width: 540px) {
   .section-title {
     max-width: 100%;
+    font-size: 26px;
   }
   .site-subtitle {
     font-size: 20px;
@@ -1248,14 +1249,13 @@ html:has(.nav_opened) {
   background: #F8F8F8;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
 .rate__title {
   text-align: center;
   padding: 0 14px;
-  margin-bottom: 32px;
+  margin: 0 auto 32px;
   flex: 1;
   display: flex;
   align-items: center;
@@ -1266,6 +1266,10 @@ html:has(.nav_opened) {
   flex-direction: column;
   gap: 12px;
   counter-reset: steps-counter 0;
+  padding-bottom: 32px;
+  border-bottom: 2px solid rgba(30, 30, 30, 0.08);
+  border-radius: 4px;
+  margin-bottom: 32px;
 }
 
 .step {
@@ -1280,15 +1284,6 @@ html:has(.nav_opened) {
 .step__title {
   letter-spacing: normal;
   margin-bottom: 12px;
-}
-
-.step__text {
-  letter-spacing: 0;
-  margin-bottom: 8px;
-}
-
-.step__text:last-of-type {
-  margin-bottom: 28px;
 }
 
 .step__title::before {
@@ -1317,9 +1312,31 @@ html:has(.nav_opened) {
   letter-spacing: normal;
 }
 
-@media (max-width: 1280px) {
+.rate__description {
+  margin-bottom: 20px;
+}
+
+.rate__conditions {
+  display: block;
+}
+
+.rate__terms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rate__price {
+  text-align: left;
+  margin: 0;
+  letter-spacing: 0.44px;
+  font-variant-numeric: lining-nums proportional-nums;
+}
+
+@media (max-width: 1276px) {
   .step__title::before {
-    font-size: 28px;
+    font-size: 20px;
   }
 }
 
@@ -1332,21 +1349,18 @@ html:has(.nav_opened) {
   }
   .step {
     border-radius: 8px;
-    background: #F8F8F8;
-    padding: 20px 8px;
-  }
-  .step__content {
-    padding: 0;
-  }
-  .step__title {
-    padding-left: 32px;
   }
   .step__title::before {
-    font-size: 20px;
-    top: 0;
-    left: 8px;
+    font-size: 16px;
   }
 }
+
+@media (max-width: 768px) {
+  .rates {
+    display: block;
+  }
+}
+
 
 @media (max-width: 540px) {
   .price__content {
@@ -1358,11 +1372,8 @@ html:has(.nav_opened) {
   .step {
     position: relative;
   }
-  .step__text {
-    margin-bottom: 6px;
-  }
-  .step__text:last-of-type {
-    margin-bottom: 18px;
+  .rate__button {
+    width: auto;
   }
 }
 
@@ -1814,5 +1825,6 @@ html:has(.nav_opened) {
   .popup__container {
     width: fit-content;
     padding: 32px 12px;
+    max-width: 296px;
   }
 }

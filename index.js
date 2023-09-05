@@ -345,16 +345,19 @@ sliders.forEach(slider => initSlider(slider));
 // }
 
 window.addEventListener('load', function() {
-  const firstSteps = document.querySelectorAll(".rate:first-child .step");
-  const secondSteps = document.querySelectorAll(".rate:nth-child(2) .step");
+  const rates = document.querySelector('.rates');
+  const firstSteps = rates.querySelectorAll(".rate:first-child .step");
+  const secondSteps = rates.querySelectorAll(".rate:nth-child(2) .step");
 
-  for (let i = 0; i < firstSteps.length; i++) {
-    const firstStepHeight = firstSteps[i].offsetHeight;
-    const secondStepHeight = secondSteps[i].offsetHeight;
+  if (window.screen.width > 540) {
+    for (let i = 0; i < firstSteps.length; i++) {
+      const firstStepHeight = firstSteps[i].offsetHeight;
+      const secondStepHeight = secondSteps[i].offsetHeight;
 
-    const maxHeight = Math.max(firstStepHeight, secondStepHeight);
+      const maxHeight = Math.max(firstStepHeight, secondStepHeight);
 
-    firstSteps[i].style.height = maxHeight + 'px';
-    secondSteps[i].style.height = maxHeight + 'px';
+      firstSteps[i].style.height = maxHeight + 'px';
+      secondSteps[i].style.height = maxHeight + 'px';
+    }
   }
 });
