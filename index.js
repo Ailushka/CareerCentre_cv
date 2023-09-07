@@ -48,6 +48,10 @@ menuLinks.forEach(menuLink => {
 const requestButtons = document.querySelectorAll('.button_type_request');
 const closeButtons = document.querySelectorAll('.button_type_close');
 const requestPopup = document.querySelector('.popup_type_request');
+
+const iframe = requestPopup.querySelector('.form');
+const iframeSrc = iframe.getAttribute('src');
+
 const requestForm = document.querySelector('.form_type_request');
 const successPopup = document.querySelector('.popup_type_success');
 const reviewPopup = document.querySelector('.popup_type_review');
@@ -94,7 +98,13 @@ function closePopUpByEsc(evt) {
 
 requestButtons.forEach((item) => {
   item.addEventListener('click', () => {
-      openPopUp(requestPopup);
+    const dataSrc = item.getAttribute('data-src');
+    const newIframeSrc = `${iframeSrc}?utm_source=${dataSrc}`;
+    iframe.setAttribute('src', newIframeSrc);
+
+    console.log(newIframeSrc);
+
+    openPopUp(requestPopup);
   });
 });
 
