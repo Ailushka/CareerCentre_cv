@@ -102,8 +102,6 @@ requestButtons.forEach((item) => {
     const newIframeSrc = `${iframeSrc}?utm_source=${dataSrc}`;
     iframe.setAttribute('src', newIframeSrc);
 
-    console.log(newIframeSrc);
-
     openPopUp(requestPopup);
   });
 });
@@ -268,106 +266,33 @@ const sliders = document.querySelectorAll('.slider');
 
 sliders.forEach(slider => initSlider(slider));
 
-// /* -------------------- */
-// /*         Tabs         */
-// /* -------------------- */
-//
-// const tabList = document.querySelector('[role="tablist"]');
-// const tabs = document.querySelectorAll('[role="tab"]');
-//
-// tabList.addEventListener('keydown', changeTabFocus);
-//
-// tabs.forEach((tab) => {
-//   tab.addEventListener('click', changeTabPanel);
-// });
-//
-// let tabFocus = 0;
-//
-// function changeTabFocus(evt) {
-//   const keydownLeft = 37;
-//   const keydownRight = 39;
-//
-//   if (evt.keyCode === keydownLeft || evt.keyCode === keydownRight) {
-//     tabs[tabFocus].setAttribute("tabindex", -1);
-//   }
-//
-//   if (evt.keyCode === keydownRight) {
-//     tabFocus++;
-//     if (tabFocus >= tabs.length) {
-//       tabFocus = 0;
-//     }
-//   }
-//
-//   if (evt.keyCode === keydownLeft) {
-//     tabFocus--;
-//     if (tabFocus < 0) {
-//       tabFocus = tabs.length - 1;
-//     }
-//   }
-//
-//   tabs[tabFocus].setAttribute("tabindex", 0);
-//   tabs[tabFocus].focus();
-// }
-//
-// function changeTabPanel(evt) {
-//   const targetTab = evt.target;
-//   const targetPanel = targetTab.getAttribute("aria-controls");
-//
-//   const tabContainer = targetTab.parentNode.parentNode;
-//   const mainContainer = tabContainer.parentNode;
-//
-//   tabContainer
-//     .querySelector('[aria-selected="true"]')
-//     .setAttribute("aria-selected", false);
-//
-//   targetTab.setAttribute("aria-selected", true);
-//
-//   hideContent(mainContainer, '[role="tabpanel"]');
-//   showContent(mainContainer, [`#${targetPanel}`]);
-// }
-//
-// function hideContent(parent, content) {
-//   parent
-//     .querySelectorAll(content)
-//     .forEach((item) => {
-//       item.setAttribute("hidden", true);
-//       item.classList.remove('tabpanel_active');
-//       const panelId = item.getAttribute("id");
-//       const sliderInstance = sliderInstances[panelId];
-//       if (sliderInstance) {
-//         sliderInstance.removeClickHandlers();
-//         sliderInstance.sliderContainer.classList.remove('slider');
-//       }
-//     });
-// }
-//
-// function showContent(parent, content) {
-//   parent.querySelector(content).removeAttribute('hidden');
-//   parent.querySelector(content).classList.add('tabpanel_active');
-//
-//   const panelId = parent.querySelector(content).getAttribute("id");
-//   const sliderInstance = sliderInstances[panelId];
-//   if (sliderInstance && parent.classList.contains('process__content')) {
-//     parent.querySelector(content).classList.add('slider');
-//     sliderInstance.removeClickHandlers();
-//     initSlider(parent.querySelector(content));
-//   }
-// }
+/* -------------------- */
+/*  Equal size columns  */
+/* -------------------- */
 
-window.addEventListener('load', function() {
+function handleEqualSize() {
   const rates = document.querySelector('.rates');
   const firstSteps = rates.querySelectorAll(".rate:first-child .step");
   const secondSteps = rates.querySelectorAll(".rate:nth-child(2) .step");
 
-  if (window.screen.width > 540) {
-    for (let i = 0; i < firstSteps.length; i++) {
-      const firstStepHeight = firstSteps[i].offsetHeight;
-      const secondStepHeight = secondSteps[i].offsetHeight;
+  for (let i = 0; i < firstSteps.length; i++) {
+    const firstStepHeight = firstSteps[i].offsetHeight;
+    const secondStepHeight = secondSteps[i].offsetHeight;
 
-      const maxHeight = Math.max(firstStepHeight, secondStepHeight);
+    const maxHeight = Math.max(firstStepHeight, secondStepHeight);
 
-      firstSteps[i].style.height = maxHeight + 'px';
-      secondSteps[i].style.height = maxHeight + 'px';
-    }
+    firstSteps[i].style.height = maxHeight + 'px';
+    secondSteps[i].style.height = maxHeight + 'px';
   }
-});
+}
+
+const mediaQuery = window.matchMedia('(min-width: 768px)');
+
+function handleTabletChange(evt) {
+  if (evt.matches) {
+    handleEqualSize();
+  }
+};
+
+mediaQuery.addEventListener('change', handleTabletChange);
+handleTabletChange(mediaQuery);
