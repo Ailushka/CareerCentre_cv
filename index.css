@@ -1062,8 +1062,7 @@ html:has(.nav_opened) {
   position: relative;
 }
 
-.feature::before,
-.feature::after {
+.feature::before {
   content: "";
   display: block;
   position: absolute;
@@ -1196,7 +1195,7 @@ html:has(.nav_opened) {
   }
   .feature::before {
     top: 10px;
-    left: 4px;
+    left: 0;
     background-position: top center;
     background-size: contain;
     width: 100%;
@@ -1214,12 +1213,15 @@ html:has(.nav_opened) {
   }
   .feature_type_design::before {
     top: 5px;
+    left: 4px;
   }
   .feature_type_customization::before {
     height: 100px;
   }
   .feature_type_job-search::before {
     background-image: url(./images/feature-job-search-icon_mobile.png);
+    top: 0;
+    left: 0;
   }
   .feature__content {
     width: 100%;
@@ -1369,7 +1371,7 @@ html:has(.nav_opened) {
 
 @media (max-width: 768px) {
   .rates {
-    display: block;
+    flex-direction: column;
   }
 }
 
@@ -1381,8 +1383,45 @@ html:has(.nav_opened) {
   .price__title {
     margin-bottom: 16px;
   }
+  .rates {
+    padding: 0 12px;
+    gap: 8px;
+  }
+  .rate {
+    padding: 20px 9.1px;
+  }
+  .rate__title {
+    margin-bottom: 16px;
+  }
+  .steps {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
   .step {
-    position: relative;
+    padding: 12px 8px 12px 29px;
+  }
+  .step__title {
+    margin-bottom: 8px;
+  }
+  .step__title::before {
+    top: 12px;
+    left: 12px;
+  }
+  .step__tags {
+    gap: 4px;
+  }
+  .step__tag {
+    padding: 1.37px 3.64px;
+    border-radius: 7.281px;
+    border-width: 0.455px;
+  }
+  .rate__terms {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .rate__description {
+    margin-bottom: 12px;
   }
   .rate__button {
     width: auto;
