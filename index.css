@@ -1731,7 +1731,7 @@ html:has(.nav_opened) {
   position: absolute;
   width: 30px;
   height: 30px;
-  background-image: url("./images/plus-icon.svg");
+  background-image: url("./images/plus-icon-black.svg");
   background-repeat: no-repeat;
   background-position: center;
   top: 0;
