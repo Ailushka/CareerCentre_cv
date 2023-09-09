@@ -50,7 +50,7 @@ const closeButtons = document.querySelectorAll('.button_type_close');
 const requestPopup = document.querySelector('.popup_type_request');
 
 const iframe = requestPopup.querySelector('.form');
-const iframeSrc = iframe.getAttribute('src');
+const iframeSrc = 'https://forms.yandex.ru/u/63c8065d84227c5465debf4c/?iframe=1';
 
 const requestForm = document.querySelector('.form_type_request');
 const successPopup = document.querySelector('.popup_type_success');
@@ -75,6 +75,7 @@ function closePopUp(popup) {
   popup.classList.remove('popup_opened');
   popup.classList.remove('transition');
   document.querySelector('.page').classList.remove('no-scroll');
+  iframe.src = '';
   document.removeEventListener('click', closePopUpByOverlay);
   document.removeEventListener('keydown', closePopUpByEsc);
 }
@@ -99,7 +100,7 @@ function closePopUpByEsc(evt) {
 requestButtons.forEach((item) => {
   item.addEventListener('click', () => {
     const dataSrc = item.getAttribute('data-src');
-    const newIframeSrc = `${iframeSrc}?utm_source=${dataSrc}`;
+    const newIframeSrc = `${iframeSrc}&utm_source=${dataSrc}`;
     iframe.setAttribute('src', newIframeSrc);
 
     openPopUp(requestPopup);
