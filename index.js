@@ -103,7 +103,10 @@ requestButtons.forEach((item) => {
     const newIframeSrc = `${iframeSrc}&utm_source=${dataSrc}`;
     iframe.setAttribute('src', newIframeSrc);
 
-    openPopUp(requestPopup);
+    iframe.onload = () => {
+      openPopUp(requestPopup);
+      iframe.onload = null;
+    };
   });
 });
 

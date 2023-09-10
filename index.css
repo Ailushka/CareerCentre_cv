@@ -1888,7 +1888,7 @@ html:has(.nav_opened) {
 }
 
 .transition {
-  transition: visibility .6s, opacity .5s linear;
+  transition: visibility .5s, opacity .6s linear;
 }
 
 .popup_opened {
