@@ -620,6 +620,11 @@ html:has(.nav_opened) {
 
 .offer__info {
   flex: 1 1 53%;
+  display: flex;
+  flex-direction: column;
+  justify-content: ;
+  padding: 40px 0;
+  box-sizing: border-box;
 }
 
 .offer__title {
@@ -658,12 +663,15 @@ html:has(.nav_opened) {
   letter-spacing: 0.16px;
 }
 
+@media (max-width: 1287px) {
+  .offer__title {
+    margin-bottom: 18px;
+  }
+}
+
 @media (max-width: 992px) {
   .offer__title {
     margin-bottom: 12px;
-  }
-  .offer__site-subtitle {
-    min-height: 57.19px;
   }
   .tags {
     gap: 3px;
@@ -842,6 +850,9 @@ html:has(.nav_opened) {
 }
 
 @media (max-width: 992px) {
+  .users__content {
+    padding: 20px;
+  }
   .users__title {
     max-width: 80%;
   }
@@ -866,21 +877,26 @@ html:has(.nav_opened) {
   }
   .user_type_change::before {
       background-image: url(./images/user-change-icon_mobile.png);
-      background-size: 40%;
+      max-width: 158px;
   }
   .user_type_upgrade::before {
       background-image: url(./images/user-upgrade-icon_mobile.svg);
   }
   .user_type_optimize::before {
       background-image: url(./images/user-optimize-icon_mobile.png);
-      background-size: 27%;
+      background-size: 100%;
+      max-width: 82px;
+      top: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .users__content {
+    padding: 20px 12px;
   }
 }
 
 @media (max-width: 540px) {
-  .users__content {
-    padding: 20px 12px;
-  }
   .users__title {
     font-size: 26px;
     line-height: calc(29 / 26);
@@ -888,6 +904,17 @@ html:has(.nav_opened) {
     max-width: 100%;
   }
   .users__list {
+  }
+  .user {
+    max-width: none;
+  }
+  .user__title {
+    min-height: 66px;
+    display: flex;
+    align-items: center;
+  }
+  .user_type_optimize .user__title {
+    min-height: 88px;
   }
   .user__text {
     font-size: 13px;
