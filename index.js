@@ -290,7 +290,7 @@ function handleEqualSize() {
   }
 }
 
-const mediaQuery = window.matchMedia('(min-width: 768px)');
+const mediaQuery = window.matchMedia('(min-width: 600px)');
 
 function handleTabletChange(evt) {
   if (evt.matches) {
